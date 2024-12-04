@@ -1,0 +1,22 @@
+The solution to prevent the content from being cleared involves separating the hover styles so they don't conflict with the pseudo-element styles. A proper solution is to avoid having `content: '';` in the hover style which is the culprit for the content being cleared.
+
+Here's the corrected CSS:
+
+```css
+.container {
+  width: 200px;
+  height: 100px;
+  background-color: lightblue;
+}
+
+.container::before {
+  content: "Important Note!";
+  display: block;
+  color: blue;
+}
+
+.container:hover {
+  background-color: lightgreen;
+}
+```
+This version correctly maintains the 'Important Note!' content, even on hover, as the hover style now doesn't override the content of the `::before` pseudo-element.
